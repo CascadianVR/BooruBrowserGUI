@@ -1,0 +1,73 @@
+﻿<Window x:Class="BooruBrowserGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:BooruBrowserGUI"
+        gif:ImageBehavior.AnimateInDesignMode="True"
+        KeyboardNavigation.DirectionalNavigation="None"
+        Name="mainWindow"
+        mc:Ignorable="d"
+        Title="BooruBrowser" Height="720" Width="1280" KeyDown="OnKeyDownHandler">
+    <Grid Background="#2d3945" KeyboardNavigation.DirectionalNavigation="None">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140*" MinWidth="150" MaxWidth="150"/>
+            <ColumnDefinition Width="1073*"/>
+            <ColumnDefinition Width="67*" MinWidth="67" MaxWidth="67"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*" MaxHeight="53" MinHeight="53"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="651*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="0,9,1,6" Width="NaN" Background="Transparent" Foreground="White" FontSize="24" Text="Tags:"/>
+        <TextBox x:Name="tags" BorderThickness="0" Margin="0,5,127,10" Background="#364554" Foreground="White" FontSize="24" Text="" Grid.Column="1"/>
+        <Image x:Name="imageDisplay"  Margin="146,43,1,0" Width="auto" KeyboardNavigation.DirectionalNavigation="None" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <MediaElement x:Name="videoDisplay" LoadedBehavior="Manual" Margin="137,43,1,0" Width="auto" Source="" Grid.ColumnSpan="2" Grid.RowSpan="3" KeyboardNavigation.DirectionalNavigation="None"/>
+        <Button  Click="Forward" BorderThickness="0" Grid.Column="2" MaxHeight="240" Margin="10,79,10,191" Grid.Row="2" Background="Transparent" TextBlock.Foreground="white" TextBlock.FontSize="40" Content="⮞"/>
+        <Button  Click="Backward" BorderThickness="0" Margin="0,79,0,191" MaxHeight="240" Grid.Row="2" Background="Transparent" TextBlock.Foreground="white" TextBlock.FontSize="40" Content="⮜" Grid.Column="1" HorizontalAlignment="Left" Width="58"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                    HorizontalScrollBarVisibility="Disabled"
+                    CanContentScroll="True" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="2">
+            <TextBlock 
+                        Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=Height}"
+                        FontSize="14" 
+                        x:Name="mediaInfo"
+                        TextWrapping="Wrap" 
+                        Foreground="White"
+                        Text="" Width="auto"/>
+
+        </ScrollViewer>
+
+        <TextBlock Margin="461,311,461,310" Visibility="Hidden" x:Name="LoadingIndicator" Background="Transparent" Text="LOADING..." Foreground="White" FontSize="24" Grid.Column="1" Grid.Row="2" MinHeight="30" MinWidth="30" Height="0"/>
+
+        <TextBlock Margin="0,0,25,0" x:Name="SaveIndicator" VerticalAlignment="Top" Background="Transparent" Foreground="White" FontSize="24" Text="" Grid.Column="0" Grid.Row="1" MinHeight="30" MinWidth="30" Height="30" Grid.RowSpan="2"/>
+
+        <TextBlock Margin="0,3,71,20" Width="46" Background="Transparent" Foreground="White" FontSize="18" Text="Auto" Grid.Column="1" MinHeight="30" MinWidth="30" HorizontalAlignment="Right"/>
+        <CheckBox Name = "autoProgress" MinHeight="15" MinWidth="15" Grid.Column="1" Margin="0,21,88,0" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.485,0.862" HorizontalAlignment="Right" Width="21">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <TextBox x:Name="delay" Background="Transparent" MinHeight="35" MinWidth="35" BorderThickness="0" Margin="0,19,66,0" Width="38" Foreground="White" FontSize="24" Text="3" TextAlignment="Center" Grid.Column="1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Height="35" VerticalAlignment="Top" Grid.RowSpan="3">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+
+        <ComboBox x:Name="booruSite" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,14,10,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="103">
+            <ComboBoxItem IsSelected="True">Gelbooru</ComboBoxItem>
+            <ComboBoxItem IsSelected="False">Rule34</ComboBoxItem>
+        </ComboBox>
+
+
+    </Grid>
+</Window>
